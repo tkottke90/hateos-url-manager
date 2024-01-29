@@ -75,3 +75,15 @@ I did not like this approach as it exposed the opportunity to for additional hum
 
 > HATEOAS is a constraint of the REST application architecture that distinguishes it from other network application architectures. With HATEOAS, a client interacts with a network application whose application servers provide information dynamically through hypermedia. A REST client needs little to no prior knowledge about how to interact with an application or server beyond a generic understanding of hypermedia. - [Wikipedia](https://en.wikipedia.org/wiki/HATEOAS)
 
+---
+## Proposed Solution
+
+As I thought about this problem more and discussed it with my colleagues, I began to wonder if I could a utility for managing these paths instead of needing to do so manually.
+
+In one case someone shared with me a solution of building a URL Builder which is what I am emulating here.  The goals of builder are:
+
+1. Build a simplified interface for creating and maintaining route strings
+2. Build a simplified interface allows for the construction of URLs (including parameters) based on the input route string
+3. Build a composable system which allowed full URLs to be constructed instead of needing to maintain multiple instances of the same pattern
+4. Build a simplified interface which provides the ability to construct a full URL with populated parameters at runtime
+

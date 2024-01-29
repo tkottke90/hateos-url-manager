@@ -10,7 +10,7 @@ export class RouteEntry {
     private readonly routePath: string,
     private parent?: RouteEntry
   ) {
-    this.createUrl = compile(this.routePath);
+    this.createUrl = compile(this.fullPath);
   }
 
   /**
