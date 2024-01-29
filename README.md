@@ -1,6 +1,6 @@
 # javscript-hateos-router
 
-
+NodeJS utility for managing path segments and the creation of HATEOAS links.
 
 ---
 ## Justification
