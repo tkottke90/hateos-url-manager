@@ -1,4 +1,4 @@
-# javscript-hateos-router
+# Javascript HATEOAS Route Manager
 
 NodeJS utility for managing path segments and the creation of HATEOAS links.
 
