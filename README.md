@@ -78,12 +78,53 @@ I did not like this approach as it exposed the opportunity to for additional hum
 ---
 ## Proposed Solution
 
-As I thought about this problem more and discussed it with my colleagues, I began to wonder if I could a utility for managing these paths instead of needing to do so manually.
+As I thought about this problem more and discussed it with my colleagues, I began to wonder if I could a utility for managing these paths instead of needing to do so manually. In one case someone shared with me a solution of building a URL Builder which is what I am emulating here. 
 
-In one case someone shared with me a solution of building a URL Builder which is what I am emulating here.  The goals of builder are:
+To this end this NPM module will The goals of builder are:
 
 1. Build a simplified interface for creating and maintaining route strings
 2. Build a simplified interface allows for the construction of URLs (including parameters) based on the input route string
 3. Build a composable system which allowed full URLs to be constructed instead of needing to maintain multiple instances of the same pattern
-4. Build a simplified interface which provides the ability to construct a full URL with populated parameters at runtime
 
+### Goal Examples
+
+A simplified interface looks to turn the need for constructing multiple URLs for similar routes into a chain of routes:
+
+```ts
+// Traditional Controller
+import { Router } from 'express'
+
+const controller = new Router();
+
+controller.get('/', findHandler);
+controller.post('/', createHandler)
+controller.get('/:id', findByIdHandler)
+controller.get('/:id/posts/:postId', getUserPostHandler)
+controller.get('/:id/posts/:postId/json', getUserPostJSONHandler)
+```
+
+Instead we create a single route for each of the shared posts and reuse them:
+
+```ts
+// New Controller
+import { Router } from 'express'
+
+const controller = new Router();
+
+// Path: /
+controller.get(createRoute('USERS', '/').path, findHandler);
+
+// Path: /
+controller.post(getRoute('USERS', '/').path, createHandler);
+
+// Path: /:userId
+controller.get(createRoute('USERS_ID', '/:userId', 'POSTS').path, findByIdHandler);
+
+// Path: /:userId/posts/:postId
+controller.get(createRoute('POSTS_ID', '/posts/:postId', 'USERS_ID').path, getUserPostHandler);
+
+// Path: /:userId/posts/:postId/json
+controller.get(createRoute('POSTS_JSON', '/json', 'POSTS_ID').path, getUserPostJSONHandler);
+```
+
+Instead we use 
