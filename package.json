@@ -33,6 +33,7 @@
     "typescript": "^5.3.3"
   },
   "eslintConfig": {
+    "ignorePatterns": ["dist/*"],
     "extends": [
       "eslint:recommended",
       "plugin:@typescript-eslint/recommended",
