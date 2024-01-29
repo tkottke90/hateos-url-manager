@@ -1,6 +1,9 @@
 import { compile } from 'path-to-regexp';
 
 export class RouteEntry {
+  /**
+   * Create a new url and populate the parameters with values
+   */
   readonly createUrl: (params: Record<string, string>) => string;
 
   constructor(
@@ -10,10 +13,16 @@ export class RouteEntry {
     this.createUrl = compile(this.routePath);
   }
 
+  /**
+   * Returns the full path of the route including all parent segments
+   */
   get fullPath() {
     return this.getPathStr().join('');
   }
 
+  /**
+   * Returns the configured path for the class instance
+   */
   get path() {
     return this.routePath;
   }
