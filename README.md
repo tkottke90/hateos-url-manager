@@ -73,5 +73,5 @@ I did not like this approach as it exposed the opportunity to for additional hum
 ---
 ## Hypermedia As The Engine Of Application State (HATEOAS)
 
-> HATEOAS is a constraint of the REST application architecture that distinguishes it from other network application architectures. With HATEOAS, a client interacts with a network application whose application servers provide information dynamically through hypermedia. A REST client needs little to no prior knowledge about how to interact with an application or server beyond a generic understanding of hypermedia. - Wikipedia
+> HATEOAS is a constraint of the REST application architecture that distinguishes it from other network application architectures. With HATEOAS, a client interacts with a network application whose application servers provide information dynamically through hypermedia. A REST client needs little to no prior knowledge about how to interact with an application or server beyond a generic understanding of hypermedia. - [Wikipedia](https://en.wikipedia.org/wiki/HATEOAS)
 
