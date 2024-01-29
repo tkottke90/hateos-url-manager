@@ -1,6 +1,6 @@
 {
   "name": "javscript-hateos-router",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Browser and Express JS Utility for creating and maintaining a HATEOS API",
   "main": "dist/cjs/index.js",
   "module": "dist/mjs/index.js",
