@@ -15,14 +15,11 @@ type MergedRoutes<
   ChildPath
 > = ChildPath extends string ? `${ParentPath}/${ChildPath}` : never;
 
-const combined: MergedRoutes<'users', ':usersId'> = 'users/:usersId';
-//    ^?
-
 export class Route<T extends string> {
   constructor(readonly path: T) {}
 
   createChild<ChildPath extends string>(path: ChildPath) {
-    const combinedPath = `${this.path}/${path}` as MergedRoutes<T, ChildPath>; // this.path + delimiter + path;
+    const combinedPath = `${this.path}/${path}` as MergedRoutes<T, ChildPath>;
 
     return new Route(combinedPath);
   }
