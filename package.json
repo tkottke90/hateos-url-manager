@@ -1,5 +1,5 @@
 {
-  "name": "javscript-hateos-router",
+  "name": "@tkottke/javscript-hateos-routes",
   "version": "0.0.0",
   "description": "Browser and Express JS Utility for creating and maintaining a HATEOS API",
   "main": "dist/cjs/index.js",
@@ -33,7 +33,7 @@
     "typescript": "^5.3.3"
   },
   "eslintConfig": {
-    "ignorePatterns": ["dist/*"],
+    "ignorePatterns": ["dist/*", "examples/*"],
     "extends": [
       "eslint:recommended",
       "plugin:@typescript-eslint/recommended",
