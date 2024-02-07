@@ -1,0 +1,6 @@
+/bin
+/examples
+/src
+/test
+/tsconfig*
+/pretterrc
