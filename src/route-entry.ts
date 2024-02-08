@@ -15,6 +15,11 @@ type PathParams<T extends string> =
       ? { [K in Param]: RouteParamValue }
       : undefined;
 
+type URLInputs = {
+  query?: Record<string, RouteParamValue>;
+  hash?: string;
+};
+
 export class Route<T extends string> {
   private readonly _path: T;
   private readonly _relativePath: string;
@@ -25,7 +30,7 @@ export class Route<T extends string> {
     // in the setup
     if (path.startsWith('/')) {
       console.warn(
-        `Leading slash is handled by the class and not required, may result in unusual paths [${path}]`
+        `[HATEOS-ROUTES] Leading slash is handled by the class and not required, may result in unusual paths [${path}]`
       );
     }
 
@@ -48,9 +53,10 @@ export class Route<T extends string> {
   }
 
   url<Params extends PathParams<T> = PathParams<T>>(
-    params?: keyof Params extends never ? undefined : Params
+    params?: keyof Params extends never ? undefined : Params,
+    options?: URLInputs
   ): string {
-    let output = this._path as string;
+    let output = `/${this._path}` as string;
 
     if (!params) return output;
 
@@ -59,6 +65,30 @@ export class Route<T extends string> {
       output = output.replace(`:${key}`, value);
     }
 
+    if (options?.query) {
+      const query = new URLSearchParams();
+      for (const qItem in options.query) {
+        query.append(qItem, options.query[qItem].toString());
+      }
+
+      output += encodeURI(`?${query.toString()}`);
+    }
+
+    if (options?.hash) {
+      output += encodeURI(`#${options.hash}`);
+    }
+
     return output;
   }
 }
+
+// Note: Location Anatomy: https://developer.mozilla.org/en-US/docs/Web/API/Location
+//
+// https://example.org:8080/foo/bar?q=baz#bang
+// ^1      ^2              ^3      ^4    ^5
+//
+// 1: Protocol
+// 2: Host (hostname + port)
+// 3: Pathname
+// 4: Search
+// 5: Hash
