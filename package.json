@@ -39,9 +39,7 @@
   "eslintConfig": {
     "ignorePatterns": [
       "dist/*",
-      "examples/*",
-      "test/*",
-      "utils/*"
+      "examples/*"
     ],
     "extends": [
       "eslint:recommended",
