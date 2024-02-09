@@ -63,11 +63,11 @@ export class Route<T extends string> {
   ): string {
     let output = `/${this._path}` as string;
 
-    if (!params) return output;
-
-    for (const key of Object.keys(params ?? {})) {
-      const value = params[key];
-      output = output.replace(`:${key}`, value);
+    if (params) {
+      for (const key of Object.keys(params ?? {})) {
+        const value = params[key];
+        output = output.replace(`:${key}`, value);
+      }
     }
 
     if (options?.query) {
