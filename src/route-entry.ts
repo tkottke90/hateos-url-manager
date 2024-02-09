@@ -39,14 +39,14 @@ export class Route<T extends string> {
   }
 
   get path(): string {
-    return `/${this._path}`;
-  }
-
-  get relativePath(): string {
     return `/${this._relativePath}`;
   }
 
-  createNested<NestedPath extends string>(path: NestedPath) {
+  get fullPath(): string {
+    return `/${this._path}`;
+  }
+
+  nest<NestedPath extends string>(path: NestedPath) {
     const combinedPath = `${this._path}/${path}` as MergedRoutes<T, NestedPath>;
 
     return new Route(combinedPath, path);
