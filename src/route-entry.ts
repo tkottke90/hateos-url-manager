@@ -1,3 +1,5 @@
+import { MissingRouteError } from './errors/missing-route.error';
+
 type RouteParamValue = string | number;
 
 // Combines 2 string literals delimited by a forward slash: users/:userId
@@ -47,6 +49,9 @@ export class Route<T extends string> {
   }
 
   nest<NestedPath extends string>(path: NestedPath) {
+    // Throw an error if the path string is empty
+    this.pathPresentCheck(path);
+
     const combinedPath = `${this._path}/${path}` as MergedRoutes<T, NestedPath>;
 
     return new Route(combinedPath, path);
@@ -79,6 +84,12 @@ export class Route<T extends string> {
     }
 
     return output;
+  }
+
+  private pathPresentCheck(path: string) {
+    if (path.length === 0) {
+      throw new MissingRouteError('A route path must be provided');
+    }
   }
 }
 

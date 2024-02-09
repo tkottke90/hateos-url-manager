@@ -13,8 +13,7 @@
   },
   "scripts": {
     "build": "rm -fr dist/* && tsc -p tsconfig-mjs.json && tsc -p tsconfig-cjs.json && ./bin/fixup.sh",
-    "test": "export TS_NODE_PROJECT='./tsconfig-testing.json' && ts-mocha",
-    "test:watch": "export TS_NODE_PROJECT='./tsconfig-testing.json' && ts-mocha -w --watch-files test/**/*.test.js"
+    "test": "export TS_NODE_PROJECT='./tsconfig-testing.json' && ts-mocha"
   },
   "keywords": [],
   "author": "",
@@ -23,12 +22,10 @@
     "path-to-regexp": "^6.2.1"
   },
   "devDependencies": {
-    "@types/chai": "^4.3.11",
     "@types/mocha": "^10.0.6",
     "@types/node": "^20.11.10",
     "@typescript-eslint/eslint-plugin": "^6.19.1",
     "@typescript-eslint/parser": "^6.19.1",
-    "chai": "^5.0.3",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",
