@@ -14,8 +14,9 @@ export declare class Route<T extends string> {
     private readonly _relativePath;
     constructor(path: T, relativePath?: string);
     get path(): string;
-    get relativePath(): string;
-    createNested<NestedPath extends string>(path: NestedPath): Route<MergedRoutes<T, NestedPath>>;
+    get fullPath(): string;
+    nest<NestedPath extends string>(path: NestedPath): Route<MergedRoutes<T, NestedPath>>;
     url<Params extends PathParams<T> = PathParams<T>>(params?: keyof Params extends never ? undefined : Params, options?: URLInputs): string;
+    private pathPresentCheck;
 }
 export {};

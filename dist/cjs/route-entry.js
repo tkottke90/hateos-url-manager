@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Route = void 0;
+const missing_route_error_1 = require("./errors/missing-route.error");
 class Route {
     constructor(path, relativePath) {
         // Both the `path` and `relativePath` getters add
@@ -13,22 +14,24 @@ class Route {
         this._relativePath = relativePath !== null && relativePath !== void 0 ? relativePath : path;
     }
     get path() {
-        return `/${this._path}`;
-    }
-    get relativePath() {
         return `/${this._relativePath}`;
     }
-    createNested(path) {
+    get fullPath() {
+        return `/${this._path}`;
+    }
+    nest(path) {
+        // Throw an error if the path string is empty
+        this.pathPresentCheck(path);
         const combinedPath = `${this._path}/${path}`;
         return new Route(combinedPath, path);
     }
     url(params, options) {
         let output = `/${this._path}`;
-        if (!params)
-            return output;
-        for (const key of Object.keys(params !== null && params !== void 0 ? params : {})) {
-            const value = params[key];
-            output = output.replace(`:${key}`, value);
+        if (params) {
+            for (const key of Object.keys(params !== null && params !== void 0 ? params : {})) {
+                const value = params[key];
+                output = output.replace(`:${key}`, value);
+            }
         }
         if (options === null || options === void 0 ? void 0 : options.query) {
             const query = new URLSearchParams();
@@ -41,6 +44,11 @@ class Route {
             output += encodeURI(`#${options.hash}`);
         }
         return output;
+    }
+    pathPresentCheck(path) {
+        if (path.length === 0) {
+            throw new missing_route_error_1.MissingRouteError('A route path must be provided');
+        }
     }
 }
 exports.Route = Route;

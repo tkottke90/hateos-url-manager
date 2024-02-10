@@ -1,3 +1,4 @@
+import { MissingRouteError } from './errors/missing-route.error';
 export class Route {
     _path;
     _relativePath;
@@ -12,22 +13,24 @@ export class Route {
         this._relativePath = relativePath ?? path;
     }
     get path() {
-        return `/${this._path}`;
-    }
-    get relativePath() {
         return `/${this._relativePath}`;
     }
-    createNested(path) {
+    get fullPath() {
+        return `/${this._path}`;
+    }
+    nest(path) {
+        // Throw an error if the path string is empty
+        this.pathPresentCheck(path);
         const combinedPath = `${this._path}/${path}`;
         return new Route(combinedPath, path);
     }
     url(params, options) {
         let output = `/${this._path}`;
-        if (!params)
-            return output;
-        for (const key of Object.keys(params ?? {})) {
-            const value = params[key];
-            output = output.replace(`:${key}`, value);
+        if (params) {
+            for (const key of Object.keys(params ?? {})) {
+                const value = params[key];
+                output = output.replace(`:${key}`, value);
+            }
         }
         if (options?.query) {
             const query = new URLSearchParams();
@@ -40,6 +43,11 @@ export class Route {
             output += encodeURI(`#${options.hash}`);
         }
         return output;
+    }
+    pathPresentCheck(path) {
+        if (path.length === 0) {
+            throw new MissingRouteError('A route path must be provided');
+        }
     }
 }
 // Note: Location Anatomy: https://developer.mozilla.org/en-US/docs/Web/API/Location
