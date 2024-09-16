@@ -1,6 +1,6 @@
 {
   "name": "@tkottke/hateos-url-manager",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Browser and Express JS Utility for creating and maintaining a HATEOS API",
   "main": "dist/cjs/index.js",
   "module": "dist/mjs/index.js",
@@ -8,7 +8,8 @@
   "exports": {
     ".": {
       "import": "./dist/mjs/index.js",
-      "require": "./dist/cjs/index.js"
+      "require": "./dist/cjs/index.js",
+      "types": "./dist/mjs.index.d.ts"
     }
   },
   "scripts": {
