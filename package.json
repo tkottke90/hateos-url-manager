@@ -20,7 +20,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "path-to-regexp": "^6.2.1"
+    "path-to-regexp": "^6.3.0"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.6",
