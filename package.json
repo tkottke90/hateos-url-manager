@@ -12,8 +12,8 @@
   },
   "scripts": {
     "build": "rm -fr dist/* && node esbuild.config.js && npm run build:types",
-    "build:types": "tsc -p tsconfig-mjs.json --emitDeclarationOnly --outDir dist/mjs",
-    "test": "export TS_NODE_PROJECT='./tsconfig-testing.json' && ts-mocha"
+    "build:types": "tsc -p tsconfig.json --emitDeclarationOnly --outDir dist/mjs",
+    "test": "export TS_NODE_PROJECT='./tsconfig.test.json' && ts-mocha"
   },
   "keywords": [],
   "author": "",
