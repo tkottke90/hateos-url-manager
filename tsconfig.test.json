@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "lib": ["es2020"],
+    "module": "ESNext",
+    "target": "ESNext",
+    "types": ["mocha", "chai", "node"]
+  },
+  "include": ["src", "test"]
+}
+

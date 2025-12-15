@@ -1,6 +1,6 @@
 {
   "extension": ["ts"],
-  "node-option": ["experimental-specifier-resolution=node", "loader=ts-node/esm"],
+  "node-option": ["experimental-specifier-resolution=node", "loader=ts-node/esm", "no-warnings=ExperimentalWarning"],
   "register": [
     "chai/register-should"
   ],

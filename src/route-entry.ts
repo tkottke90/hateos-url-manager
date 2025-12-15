@@ -66,7 +66,7 @@ export class Route<T extends string> {
     if (params) {
       for (const key of Object.keys(params ?? {})) {
         const value = params[key];
-        output = output.replace(`:${key}`, value);
+        output = output.replace(`:${key}`, String(value));
       }
     }
 
