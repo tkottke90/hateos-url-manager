@@ -1,0 +1,54 @@
+name: Build
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      release:
+        description: 'Release this version'
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js and install dependencies
+        uses: tkottke90/ollama-chat-map/.github/actions/setup-node-cicd@f50b27fe1bc82af66ed726e201c068d3e592d424
+        with:
+          registry-url: ${{ secrets.PRIVATE_NPM_REGISTRY }}
+          node-auth-token: ${{ secrets.PRIVATE_NPM_REGISTRY_TOKEN }}
+
+      - name: Build Package
+        run: npm run build
+      
+      - name: Run Unit Tests
+        run: npm run test
+
+      - name: Pack Package
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v') || github.event.inputs.release == 'true'
+        run: npm pack
+
+      - name: Publish to Private NPM Registry
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v') || github.event.inputs.release == 'true'
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.PRIVATE_NPM_REGISTRY_TOKEN }}
+
+      - name: Create GitHub Release
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v1
+        with:
+          files: '*.tgz'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
