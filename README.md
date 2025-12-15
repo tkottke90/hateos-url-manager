@@ -1,7 +1,5 @@
 # Javascript HATEOAS Route Manager
 
-[![Release](https://github.com/tkottke90/hateos-url-manager/actions/workflows/build.yaml/badge.svg?event=release)](https://github.com/tkottke90/hateos-url-manager/actions/workflows/build.yaml)
-
 [![Build](https://github.com/tkottke90/hateos-url-manager/actions/workflows/build.yaml/badge.svg)](https://github.com/tkottke90/hateos-url-manager/actions/workflows/build.yaml)
 
 NodeJS utility for managing path segments and the creation of [HATEOS](https://en.wikipedia.org/wiki/HATEOAS) links. This project is born out of the desire to make the APIs I create more _discoverable_.
