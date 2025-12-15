@@ -63,7 +63,7 @@ var Route = class _Route {
     if (params) {
       for (const key of Object.keys(params != null ? params : {})) {
         const value = params[key];
-        output = output.replace(`:${key}`, value);
+        output = output.replace(`:${key}`, String(value));
       }
     }
     if (options == null ? void 0 : options.query) {
