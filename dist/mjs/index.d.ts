@@ -1,1 +1,1 @@
-export * from './route-entry';
+export * from './route-entry.js';
