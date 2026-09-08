@@ -16,7 +16,7 @@
   },
   "scripts": {
     "build": "rm -fr dist/* && node esbuild.config.js && npm run build:types",
-    "build:types": "tsc -p tsconfig.json --emitDeclarationOnly --outDir dist/mjs",
+    "build:types": "tsc -p tsconfig.json --emitDeclarationOnly --outDir dist/mjs && node scripts/fix-dts-extensions.js",
     "test": "export TS_NODE_PROJECT='./tsconfig.test.json' && ts-mocha"
   },
   "keywords": [],
