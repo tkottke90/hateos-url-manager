@@ -24,10 +24,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Node.js and install dependencies
-        uses: tkottke90/ollama-chat-map/.github/actions/setup-node-cicd@f50b27fe1bc82af66ed726e201c068d3e592d424
+        uses: tkottke90/js-libraries/actions/setup-node-cicd@main
         with:
-          registry-url: ${{ secrets.PRIVATE_NPM_REGISTRY }}
-          node-auth-token: ${{ secrets.PRIVATE_NPM_REGISTRY_TOKEN }}
+          npm-token: ${{ secrets.NPM_TOKEN }}
 
       - name: Build Package
         run: npm run build
