@@ -29,11 +29,11 @@
     "@eslint/js": "10.0.1",
     "@types/mocha": "^10.0.6",
     "@types/node": "^25.0.2",
-    "@typescript-eslint/eslint-plugin": "8.71.2",
-    "@typescript-eslint/parser": "8.71.2",
+    "@typescript-eslint/eslint-plugin": "8.74.0",
+    "@typescript-eslint/parser": "8.74.0",
     "esbuild": "0.28.2",
     "esbuild-node-externals": "2.0.0",
-    "eslint": "10.13.0",
+    "eslint": "10.15.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-prettier": "5.5.7",
     "eslint-plugin-unused-imports": "4.4.1",
@@ -53,5 +53,8 @@
   "bugs": {
     "url": "https://github.com/tkottke90/hateos-url-manager/issues"
   },
-  "homepage": "https://github.com/tkottke90/hateos-url-manager#readme"
+  "homepage": "https://github.com/tkottke90/hateos-url-manager#readme",
+  "overrides": {
+    "minimatch": "^11.0.1"
+  }
 }
